@@ -23,7 +23,8 @@ Output:
 2
 3
 */
-#include<bits/stdc++.h>
+#include<vector>
+#include<iostream>
 using namespace std;
 int main()
  {
@@ -33,12 +34,16 @@ int main()
 	while (t > 0)   {
 	    cin >> str;
 	    n = str.size();
+		//dp[i] is defined as length of longest prefix which is also a suffix for the substring 0..i
 	    vector<int> dp(n, 0);
 	    for (int i=1; i<n; i++) {
 	        if (str[dp[i-1]] == str[i])
 	            dp[i] = dp[i-1]+1;
             else if (str[0]==str[i])
                 dp[i] = 1;
+	    }
+		for (int i=0; i<n-1; i++) {
+	        cout << dp[i] << " ";
 	    }
 	    cout << dp[n-1] << endl;
 	    t--;
